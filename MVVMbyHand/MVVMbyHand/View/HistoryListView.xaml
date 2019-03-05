@@ -1,12 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MVVMbyHand.View.HistoryListView">
+             x:Class="MVVMbyHand.View.HistoryListView"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" 
+             ios:Page.UseSafeArea="true">
     <ContentPage.Content>
-        <StackLayout>
-            <ListView
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <ListView Grid.Row="0" MinimumHeightRequest="50"
                 IsPullToRefreshEnabled="True"
-                IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                IsRefreshing="{Binding IsBusy}"
                 ItemsSource="{Binding HistoryItems}"
                 SelectedItem="{Binding SelectedHistoryItem}"
                 RefreshCommand="{Binding ListHistoryCommand}"
@@ -29,13 +35,14 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <StackLayout HorizontalOptions="Center"
-                         Orientation="Horizontal">
+            <StackLayout Grid.Row="1"
+                HorizontalOptions="Center"
+                Orientation="Horizontal">
                 <Button BackgroundColor="Teal"
                         Command="{Binding ClearHistoryCommand}"
                         Text="Clear History"
                         TextColor="White" />
             </StackLayout>
-        </StackLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

@@ -53,11 +53,15 @@ namespace MVVMbyHand.ViewModel
             {
                 _selectedHistoryItem = value;
                 OnPropertyChanged(nameof(SelectedHistoryItem));
+                
                 /*
                 TODO: 
                 HOW to navigate to input view to show selected HistoryItem detail 
                 without touching the Xamarin Forms UI API? 
+                
+                //Application.Current.MainPage.Navigation.PushAsync(new MVVMbyHand.View.InputView());
                 */
+
                 _selectedHistoryItem = null;
             }
         }
@@ -94,7 +98,7 @@ namespace MVVMbyHand.ViewModel
 
         private void DoClearHistory()
         {
-            HistoryItems = new ObservableCollection<HistoryItem>();
+            HistoryItems.Clear();
             _model.ClearAll();
         }
 
